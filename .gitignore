@@ -29,6 +29,7 @@ WorldCities/.vscode/*
 .history/*
 
 # Miscellaneous
+WorldCities/obj
 WorldCities/.angular/cache
 .sass-cache/
 /connect.lock
