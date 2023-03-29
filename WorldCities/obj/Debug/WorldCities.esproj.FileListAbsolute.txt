@@ -1,2 +1,0 @@
-C:\Users\devma\source\repos\WorldCities\WorldCities\obj\Debug\WorldCities.esproj.SuggestedBindingRedirects.cache
-C:\Users\devma\source\repos\WorldCities\WorldCities\obj\Debug\WorldCities.esproj.CoreCompileInputs.cache
