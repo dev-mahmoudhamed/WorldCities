@@ -5,7 +5,7 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 import { environment } from 'src/environments/environment';
 import { City } from './city';
-
+import { Country } from '../countries/country';
 @Component({
   selector: 'app-city-edit',
   templateUrl: './city-edit.component.html',
@@ -18,6 +18,7 @@ export class CityEditComponent implements OnInit {
   form!: FormGroup;
   city?: City;
   id?: number;
+  countries?: Country[];
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private http: HttpClient) {
   }
@@ -26,12 +27,15 @@ export class CityEditComponent implements OnInit {
     this.form = new FormGroup({
       name: new FormControl(''),
       lat: new FormControl(''),
-      lon: new FormControl('')
+      lon: new FormControl(''),
+      countryId: new FormControl('')
     });
+
     this.loadData();
   }
 
   loadData() {
+    this.loadCountries();
     // retrieve the ID from the 'id' parameter
     var idParam = this.activatedRoute.snapshot.paramMap.get('id');
     this.id = idParam ? +idParam : 0;
@@ -52,31 +56,48 @@ export class CityEditComponent implements OnInit {
     }
   }
 
+  loadCountries() {
+    var url = environment.baseUrl + 'api/Countries';
+    var params = new HttpParams()
+      .set("pageIndex", "0")
+      .set("pageSize", "9999")
+      .set("sortColumn", "name");
+
+    this.http.get<any>(url, { params }).subscribe(result => {
+      this.countries = result.data;
+    }, error => console.error(error));
+  };
+
+
   onSubmit() {
     var city = (this.id) ? this.city : <City>{};
     if (city) {
       city.name = this.form.controls['name'].value;
       city.lat = +this.form.controls['lat'].value;
       city.lon = +this.form.controls['lon'].value;
-      var url = environment.baseUrl + 'api/Cities/' + city.id;
-      this.http
-        .put<City>(url, city)
-        .subscribe(result => {
-          console.log("City " + city!.id + " has been updated.");
-          // go back to cities view
-          this.router.navigate(['/cities']);
-        }, error => console.error(error));
-    }
-    else {
-      // ADD NEW mode
-      var url = environment.baseUrl + 'api/Cities';
-      this.http
-        .post<City>(url, city)
-        .subscribe(result => {
-          console.log("City " + result.id + " has been created.");
-          // go back to cities view
-          this.router.navigate(['/cities']);
-        }, error => console.error(error));
+      city.countryId = +this.form.controls['countryId'].value;
+      if (this.id) {
+        // EDIT mode
+        var url = environment.baseUrl + 'api/Cities/' + city.id;
+        this.http
+          .put<City>(url, city)
+          .subscribe(result => {
+            console.log("City " + city!.id + " has been updated.");
+            // go back to cities view
+            this.router.navigate(['/cities']);
+          }, error => console.error(error));
+      }
+      else {
+        // ADD NEW mode
+        var url = environment.baseUrl + 'api/Cities';
+        this.http
+          .post<City>(url, city)
+          .subscribe(result => {
+            console.log("City " + result.id + " has been created.");
+            // go back to cities view
+            this.router.navigate(['/cities']);
+          }, error => console.error(error));
+      }
     }
   }
 }
