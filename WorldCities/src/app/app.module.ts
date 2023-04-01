@@ -13,6 +13,7 @@ import { ModelFormComponent } from './Components/model-form/model-form.component
 import { ReactiveFormsModule } from '@angular/forms';
 import { CityEditComponent } from './Components/cities/city-edit.component';
 import { CountriesComponent } from './Components/countries/countries.component';
+import { CountryEditComponent } from './Components/countries/country-edit.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { CountriesComponent } from './Components/countries/countries.component';
     CitiesComponent,
     ModelFormComponent,
     CityEditComponent,
-    CountriesComponent
+    CountriesComponent,
+    CountryEditComponent
   ],
   imports: [
     BrowserModule,
