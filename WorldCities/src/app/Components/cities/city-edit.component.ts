@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { City } from './city';
 import { Country } from '../countries/country';
+import { BaseFormComponent } from 'src/app/base-form.component';
 @Component({
   selector: 'app-city-edit',
   templateUrl: './city-edit.component.html',
@@ -15,14 +16,14 @@ import { Country } from '../countries/country';
 })
 
 
-export class CityEditComponent implements OnInit {
+export class CityEditComponent extends BaseFormComponent implements OnInit {
   title?: string;
-  form!: FormGroup;
   city?: City;
   id?: number;
   countries?: Country[];
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private http: HttpClient) {
+    super();
   }
 
   ngOnInit() {
