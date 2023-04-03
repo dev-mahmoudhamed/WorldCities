@@ -20,13 +20,23 @@ namespace WorldCitiesAPI.Controllers
 
         // GET: api/Countries
         [HttpGet]
-        public async Task<ActionResult<ApiResult<Country>>> GetCountries(int pageIndex = 0, int pageSize = 10,
+        public async Task<ActionResult<ApiResult<CountryDTO>>> GetCountries(
+            int pageIndex = 0,
+            int pageSize = 10,
             string? sortColumn = null,
             string? sortOrder = null,
             string? filterColumn = null,
             string? filterQuery = null)
         {
-            return await ApiResult<Country>.CreateAsync(_context.Countries.AsNoTracking(), pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
+            return await ApiResult<CountryDTO>.CreateAsync(_context.Countries.AsNoTracking().Select(c => new CountryDTO()
+            {
+                Id = c.Id,
+                Name = c.Name,
+                ISO2 = c.ISO2,
+                ISO3 = c.ISO3,
+                TotalCities = c.Cities!.Count
+            }),
+                pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
 
         // GET: api/Countries/5
@@ -104,6 +114,23 @@ namespace WorldCitiesAPI.Controllers
         private bool CountryExists(int id)
         {
             return _context.Countries.Any(e => e.Id == id);
+        }
+
+        [HttpPost]
+        [Route("IsDupeField")]
+        public bool IsDupeField(int countryId,string fieldName,string fieldValue)
+        {
+            switch (fieldName)
+            {
+                case "name":
+                    return _context.Countries.Any(c => c.Name == fieldValue && c.Id != countryId);
+                case "iso2":
+                    return _context.Countries.Any(c => c.ISO2 == fieldValue && c.Id != countryId);
+                case "iso3":
+                    return _context.Countries.Any(c => c.ISO3 == fieldValue && c.Id != countryId);
+                default:
+                    return false;
+            }
         }
     }
 }
