@@ -13,7 +13,6 @@ export abstract class BaseService<T> {
 
   constructor(protected http: HttpClient) {
   }
-
   abstract getData(
     pageIndex: number,
     pageSize: number,

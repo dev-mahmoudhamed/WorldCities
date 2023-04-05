@@ -2,7 +2,6 @@
 using System.Linq.Dynamic.Core;
 using System.Reflection;
 
-
 namespace WorldCitiesAPI.Data
 {
     public class ApiResult<T>
@@ -64,7 +63,9 @@ namespace WorldCitiesAPI.Data
             }
 
             source = source.Skip(pageIndex * pageSize).Take(pageSize);
+
             var data = await source.ToListAsync();
+
             return new ApiResult<T>(data, count, pageIndex, pageSize, sortColumn, sortOrder, filterColumn, filterQuery);
         }
         public static bool IsValidProperty(string propertyName, bool throwExceptionIfNotFound = true)

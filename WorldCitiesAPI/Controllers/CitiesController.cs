@@ -51,7 +51,7 @@ namespace WorldCitiesAPI.Controllers
                 return NotFound();
             }
 
-            Console.WriteLine("\n\n\n\n\nCity State is : " + _context.Entry(city).State+"\n\n\n\n\n");
+            Console.WriteLine("\n\n\n\n\nCity State is : " + _context.Entry(city).State + "\n\n\n\n\n");
             return city;
         }
 
