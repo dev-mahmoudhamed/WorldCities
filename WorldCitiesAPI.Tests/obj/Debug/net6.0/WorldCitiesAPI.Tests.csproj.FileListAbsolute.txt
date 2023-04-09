@@ -360,3 +360,9 @@ C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\obj\Debug\net6.0\re
 C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\obj\Debug\net6.0\WorldCitiesAPI.Tests.pdb
 C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\obj\Debug\net6.0\WorldCitiesAPI.Tests.genruntimeconfig.cache
 C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\obj\Debug\net6.0\ref\WorldCitiesAPI.Tests.dll
+C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net6.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
+C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI.Tests\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll

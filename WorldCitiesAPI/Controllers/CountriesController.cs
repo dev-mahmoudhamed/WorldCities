@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Data;
 using WorldCitiesAPI.Data;
 using WorldCitiesAPI.Models;
 
@@ -9,9 +11,9 @@ namespace WorldCitiesAPI.Controllers
     [ApiController]
     public class CountriesController : ControllerBase
     {
-        private readonly WorldCitiesDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public CountriesController(WorldCitiesDbContext context)
+        public CountriesController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -54,6 +56,7 @@ namespace WorldCitiesAPI.Controllers
         }
 
         // PUT: api/Countries/5
+        [Authorize(Roles = "RegisteredUser")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutCountry(int id, Country country)
         {
@@ -84,6 +87,7 @@ namespace WorldCitiesAPI.Controllers
         }
 
         // POST: api/Countries
+        [Authorize(Roles = "RegisteredUser")]
         [HttpPost]
         public async Task<ActionResult<Country>> PostCountry(Country country)
         {
@@ -94,6 +98,7 @@ namespace WorldCitiesAPI.Controllers
         }
 
         // DELETE: api/Countries/5
+        [Authorize(Roles = "Administrator")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteCountry(int id)
         {
@@ -108,6 +113,10 @@ namespace WorldCitiesAPI.Controllers
 
             return NoContent();
         }
+
+
+
+
 
         private bool CountryExists(int id)
         {

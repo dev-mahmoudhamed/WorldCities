@@ -13,8 +13,8 @@ namespace WorldCitiesAPI.Tests
         public async Task GetCity()
         {
             // Arrange
-            var options = new DbContextOptionsBuilder<WorldCitiesDbContext>().UseInMemoryDatabase(databaseName: "WorldCities").Options;
-            using var context = new WorldCitiesDbContext(options);
+            var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseInMemoryDatabase(databaseName: "WorldCities").Options;
+            using var context = new ApplicationDbContext(options);
             context.Add(new City()
             {
                 Id = 1,
