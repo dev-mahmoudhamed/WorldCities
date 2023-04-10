@@ -51,7 +51,6 @@ export class RegisterComponent extends BaseFormComponent implements OnInit {
         }).then(() => {
           this.authService.login(login_request).subscribe(res => {
             console.log(res);
-            console.log("From Login method");
             if (res.success) {
               this.router.navigate(["/"]);
             }

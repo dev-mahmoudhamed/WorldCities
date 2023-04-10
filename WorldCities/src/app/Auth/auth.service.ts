@@ -13,6 +13,9 @@ import { RegisterResult } from './register-result';
 })
 
 export class AuthService {
+    public username?: string;
+
+
     constructor(protected http: HttpClient) {
     }
 
@@ -38,6 +41,8 @@ export class AuthService {
         var url = environment.baseUrl + "api/Account/Login";
         return this.http.post<LoginResult>(url, item)
             .pipe(tap(loginResult => {
+                this.username = item.email;
+
                 if (loginResult.success && loginResult.token) {
                     localStorage.setItem(this.tokenKey, loginResult.token);
                     this.setAuthStatus(true);

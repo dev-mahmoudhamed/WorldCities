@@ -47,5 +47,6 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
         this.loginResult = error.error;
       }
     });
+
   }
 }

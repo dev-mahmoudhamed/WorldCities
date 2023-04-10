@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.IdentityModel.Tokens.Jwt;
 using WorldCitiesAPI.Data;
 using WorldCitiesAPI.Models;
@@ -46,7 +47,6 @@ namespace WorldCitiesAPI.Controllers
             });
         }
 
-
         [HttpPost("Register")]
         public async Task<ActionResult> Register(RegisterRequest registerRequest)
         {
@@ -82,6 +82,13 @@ namespace WorldCitiesAPI.Controllers
                 Success = true,
                 Message = "Registered successfully",
             });
+        }
+
+
+        [HttpGet("Users")]
+        public async Task<List<ApplicationUser>> getUsers()
+        {
+            return await _context.Users.ToListAsync();
         }
     }
 }
