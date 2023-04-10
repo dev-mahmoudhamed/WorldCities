@@ -23,8 +23,7 @@ namespace WorldCitiesAPI.Data
             var jwtOptions = new JwtSecurityToken(
                 issuer: _configuration["JwtSettings:Issuer"],
                 audience: _configuration["JwtSettings:Audience"],
-                expires: DateTime.Now.AddMinutes(Convert.ToDouble(
-                    _configuration["JwtSettings:ExpirationTimeInMinutes"])),
+                expires: DateTime.Now.AddMinutes(Convert.ToDouble(_configuration["JwtSettings:ExpirationTimeInMinutes"])),
                 claims: await GetClaimsAsync(user),
                 signingCredentials: GetSigningCredentials());
 

@@ -7,7 +7,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 import { City } from './city';
 import { CityService } from './city.service';
-import { ApiResult } from 'src/app/base.service';
+import { AuthService } from 'src/app/Auth/auth.service';
 
 @Component({
   selector: 'app-cities',
@@ -28,12 +28,13 @@ export class CitiesComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   filterTextChanged: Subject<string> = new Subject<string>();
+  isLoggedIn: boolean = false;
 
-
-  constructor(private cityService: CityService) {
+  constructor(private cityService: CityService, private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.isAuthenticated();
     this.loadData();
   }
 

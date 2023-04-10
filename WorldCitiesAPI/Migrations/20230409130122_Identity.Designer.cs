@@ -12,7 +12,7 @@ using WorldCitiesAPI.Data;
 namespace WorldCitiesAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230408223511_Identity")]
+    [Migration("20230409130122_Identity")]
     partial class Identity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

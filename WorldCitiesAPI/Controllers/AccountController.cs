@@ -13,15 +13,17 @@ namespace WorldCitiesAPI.Controllers
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly JwtHandler _jwtHandler;
+        private IConfiguration _configuration;
 
-        public AccountController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, JwtHandler jwtHandler)
+        public AccountController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, JwtHandler jwtHandler, IConfiguration configuration)
         {
             _context = context;
             _userManager = userManager;
             _jwtHandler = jwtHandler;
+            _configuration = configuration;
         }
 
-        [HttpGet("login")]
+        [HttpPost("login")]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
             var user = await _userManager.FindByNameAsync(loginRequest.Email);
@@ -41,6 +43,44 @@ namespace WorldCitiesAPI.Controllers
                 Success = true,
                 Message = "Login successful",
                 Token = jwt
+            });
+        }
+
+
+        [HttpPost("register")]
+        public async Task<ActionResult> Register(RegisterRequest registerRequest)
+        {
+            string role_RegisteredUser = "RegisteredUser";
+            var user = await _userManager.FindByEmailAsync(registerRequest.Email);
+            if (user != null)
+            {
+                return Unauthorized(new RegisterResult()
+                {
+                    Success = false,
+                    Message = "Email already exists"
+                });
+            }
+
+            var register_User = new ApplicationUser()
+            {
+
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = registerRequest.Email,
+                Email = registerRequest.Email
+            };
+
+            await _userManager.CreateAsync(register_User, registerRequest.Password);
+            await _userManager.AddToRoleAsync(register_User, role_RegisteredUser);
+
+            register_User.EmailConfirmed = true;
+            register_User.LockoutEnabled = false;
+
+            await _context.SaveChangesAsync();
+            
+            return Ok(new RegisterResult()
+            {
+                Success = true,
+                Message = "Registered successfully",
             });
         }
     }

@@ -9,7 +9,7 @@ using WorldCitiesAPI.Models;
 
 namespace WorldCitiesAPI.Controllers
 {
-
+    
     [Authorize(Roles = "Administrator")]
     [ApiController]
     [Route("api/[controller]")]
@@ -171,15 +171,21 @@ namespace WorldCitiesAPI.Controllers
                     Email = email_Admin,
                 };
                 await _userManager.CreateAsync(user_Admin, _configuration["DefaultPasswords:Administrator"]);
+                
                 // assign the "RegisteredUser" and "Administrator" roles
                 await _userManager.AddToRoleAsync(user_Admin, role_RegisteredUser);
                 await _userManager.AddToRoleAsync(user_Admin, role_Administrator);
+               
                 // confirm the e-mail and remove lockout
                 user_Admin.EmailConfirmed = true;
                 user_Admin.LockoutEnabled = false;
+                
                 // add the admin user to the added users list
                 addedUserList.Add(user_Admin);
             }
+          
+            
+            
             // check if the standard user already exists
             var email_User = "user@email.com";
             if (await _userManager.FindByNameAsync(email_User) == null)
@@ -196,12 +202,17 @@ namespace WorldCitiesAPI.Controllers
                 await _userManager.CreateAsync(user_User, _configuration["DefaultPasswords:RegisteredUser"]);
                 // assign the "RegisteredUser" role
                 await _userManager.AddToRoleAsync(user_User, role_RegisteredUser);
+               
                 // confirm the e-mail and remove lockout
                 user_User.EmailConfirmed = true;
                 user_User.LockoutEnabled = false;
+               
                 // add the standard user to the added users list
                 addedUserList.Add(user_User);
             }
+           
+            
+            
             // if we added at least one user, persist the changes into the DB
             if (addedUserList.Count > 0)
             { 

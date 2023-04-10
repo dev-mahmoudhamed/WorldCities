@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { Country } from './country';
 import { CountryService } from './country.service';
+import { AuthService } from 'src/app/Auth/auth.service';
 
 @Component({
   selector: 'app-countries',
@@ -23,15 +24,17 @@ export class CountriesComponent implements OnInit {
   public defaultSortOrder: "asc" | "desc" = "asc";
   defaultFilterColumn: string = "name";
   filterQuery?: string;
+  isLoggedIn: boolean = false;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   filterTextChanged: Subject<string> = new Subject<string>();
 
 
-  constructor(private countryService: CountryService) {
+  constructor(private countryService: CountryService, private authService: AuthService) {
   }
   ngOnInit() {
+    this.isLoggedIn = this.authService.isAuthenticated();
     this.loadData();
   }
 
