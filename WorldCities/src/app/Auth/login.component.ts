@@ -48,5 +48,4 @@ export class LoginComponent extends BaseFormComponent implements OnInit {
       }
     });
   }
-
 }

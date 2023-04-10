@@ -23,7 +23,7 @@ namespace WorldCitiesAPI.Controllers
             _configuration = configuration;
         }
 
-        [HttpPost("login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login(LoginRequest loginRequest)
         {
             var user = await _userManager.FindByNameAsync(loginRequest.Email);
@@ -47,14 +47,14 @@ namespace WorldCitiesAPI.Controllers
         }
 
 
-        [HttpPost("register")]
+        [HttpPost("Register")]
         public async Task<ActionResult> Register(RegisterRequest registerRequest)
         {
             string role_RegisteredUser = "RegisteredUser";
             var user = await _userManager.FindByEmailAsync(registerRequest.Email);
             if (user != null)
             {
-                return Unauthorized(new RegisterResult()
+                return BadRequest(new RegisterResult()
                 {
                     Success = false,
                     Message = "Email already exists"

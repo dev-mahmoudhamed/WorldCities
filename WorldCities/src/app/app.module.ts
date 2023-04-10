@@ -16,6 +16,7 @@ import { CountriesComponent } from './Components/countries/countries.component';
 import { CountryEditComponent } from './Components/countries/country-edit.component';
 import { LoginComponent } from './Auth/login.component';
 import { AuthInterceptor } from './Auth/auth.interceptor';
+import { RegisterComponent } from './Auth/register.component';
 
 
 @NgModule({
@@ -29,6 +30,7 @@ import { AuthInterceptor } from './Auth/auth.interceptor';
     CountriesComponent,
     CountryEditComponent,
     LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,7 +40,6 @@ import { AuthInterceptor } from './Auth/auth.interceptor';
     AppRoutingModule,
     AngularMaterialModule,
     ReactiveFormsModule,
-
   ],
   providers: [
     {

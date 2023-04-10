@@ -1,9 +1,9 @@
 <div class="login">
-    <h1>Login</h1>
+    <h1>Register</h1>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <p>
-            <mat-error *ngIf="loginResult && !loginResult.success">
-                <strong>ERROR</strong>: {{loginResult.message}}
+            <mat-error *ngIf="registerResult && !registerResult.success">
+                <strong>ERROR</strong>: {{registerResult.message}}
             </mat-error>
         </p>
 
@@ -14,7 +14,7 @@
             <mat-error *ngFor="let error of getErrors(form.get('email')!,'Email')"> {{error}} </mat-error>
         </mat-form-field>
 
-        <!-- Passord -->
+        <!-- Password -->
         <mat-form-field>
             <mat-label>Password:</mat-label>
             <input matInput type="password" formControlName="password" required placeholder="Insert Password">
@@ -22,7 +22,7 @@
         </mat-form-field>
 
         <div>
-            <button mat-flat-button color="primary" type="submit"> Login </button>
+            <button mat-flat-button color="accent" type="submit"> Register </button>
             <button mat-flat-button color="secondary" [routerLink]="['/']"> Cancel </button>
         </div>
     </form>
