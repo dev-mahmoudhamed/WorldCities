@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Data;
 using WorldCitiesAPI.Data;
 using WorldCitiesAPI.Models;
+using WorldCitiesAPI.Models.DTOs;
 
 namespace WorldCitiesAPI.Controllers
 {

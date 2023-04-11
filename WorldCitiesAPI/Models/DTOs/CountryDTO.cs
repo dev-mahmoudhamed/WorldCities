@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WorldCitiesAPI.Models
+namespace WorldCitiesAPI.Models.DTOs
 {
     public class CountryDTO
     {

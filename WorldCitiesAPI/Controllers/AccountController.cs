@@ -47,6 +47,9 @@ namespace WorldCitiesAPI.Controllers
             });
         }
 
+
+
+
         [HttpPost("Register")]
         public async Task<ActionResult> Register(RegisterRequest registerRequest)
         {

@@ -6,9 +6,7 @@ using System.Text.Json.Serialization;
 namespace WorldCitiesAPI.Models
 {
     [Table("Countries")]
-    [Index(nameof(Name))]
-    [Index(nameof(ISO2))]
-    [Index(nameof(ISO3))]
+   
     public class Country
     {
         [Key]

@@ -5,9 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WorldCitiesAPI.Models
 {
     [Table("Cities")]
-    [Index(nameof(Name))]
-    [Index(nameof(Lat))]
-    [Index(nameof(Lon))]
+    
     public class City
     {
 
