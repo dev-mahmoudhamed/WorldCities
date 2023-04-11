@@ -9,5 +9,4 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\WorldCities</BuildOutputFolder>
   </PropertyGroup>
-
 </Project>
