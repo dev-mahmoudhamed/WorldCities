@@ -277,3 +277,4 @@ C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsof
 C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Core.dll
 C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\Microsoft.Extensions.Identity.Stores.dll
+C:\Users\devma\source\repos\WorldCities\WorldCitiesAPI\bin\Debug\net6.0\appsettings.Production.json
