@@ -10,10 +10,8 @@ import { FormGroup, AbstractControl } from '@angular/forms';
 export abstract class BaseFormComponent {
   form!: FormGroup;
 
-  getErrors(control: AbstractControl,
-    displayName: string,
-    customMessages: { [key: string]: string } | null = null
-  ): string[] {
+  getErrors(control: AbstractControl, displayName: string, customMessages: { [key: string]: string } | null = null)
+    : string[] {
     var errors: string[] = [];
     Object.keys(control.errors || {}).forEach((key) => {
       switch (key) {

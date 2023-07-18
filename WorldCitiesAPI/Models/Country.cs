@@ -6,7 +6,8 @@ using System.Text.Json.Serialization;
 namespace WorldCitiesAPI.Models
 {
     [Table("Countries")]
-   
+    [Index(nameof(Name))]
+
     public class Country
     {
         [Key]

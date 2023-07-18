@@ -10,7 +10,6 @@ import { City } from './city';
 import { Country } from '../countries/country';
 import { BaseFormComponent } from 'src/app/base-form.component';
 import { CityService } from './city.service';
-import { ApiResult } from 'src/app/base.service';
 
 @Component({
   selector: 'app-city-edit',
